@@ -1,1 +1,26 @@
-<p>otp works!</p>
+<div class="container p-3 px-3 otp-box card">
+  <form [formGroup]="otp_form" (ngSubmit)="get_otp()">
+    <div class="row">
+      <div class="col-12">
+        <div class="form-group">
+          <label for="otp">Enter Your Otp</label>
+          <input
+            type="text"
+            name="otp"
+            class="form-control"
+            autocomplete="off"
+            id=""
+            formControlName="otp"
+          />
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="form-group">
+          <button class="btn btn-success" [disabled]="otp_form.invalid">
+            Submit
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

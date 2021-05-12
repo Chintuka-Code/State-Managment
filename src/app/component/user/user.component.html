@@ -1,1 +1,53 @@
-<p>user works!</p>
+<div class="container mt-3">
+  <form [formGroup]="user_form" (ngSubmit)="show_otp = true">
+    <div class="row">
+      <div class="col-12 col-md-6">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="name"
+            name="name"
+            id=""
+          />
+        </div>
+      </div>
+      <div class="col-12 col-md-6">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="email"
+            name="email"
+            id=""
+          />
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6">
+        <div class="form-group">
+          <button class="btn btn-success" [disabled]="user_form.invalid">
+            Submit
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div
+  class="
+    container-fluid
+    otp-container
+    w-100
+    h-100
+    d-flex
+    justify-content-center
+    align-items-center
+  "
+  *ngIf="show_otp"
+>
+  <app-otp [otp]="otp" (sendingOtp)="create_user($event)"></app-otp>
+</div>
