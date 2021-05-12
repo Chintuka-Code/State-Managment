@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/model/user.interface';
+import { getUser } from 'src/app/state/user.selectors';
 
 @Component({
   selector: 'app-user-profile',
@@ -10,12 +11,15 @@ import { User } from 'src/app/model/user.interface';
 })
 export class UserProfileComponent implements OnInit {
   // getting particular data from state
-  constructor(private store: Store<{ user: User }>) {}
+  constructor(private store: Store) {}
 
   user_Profile$: Observable<User>;
 
   get_data() {
-    this.user_Profile$ = this.store.select('user');
+    this.user_Profile$ = this.store.select(getUser);
+    this.user_Profile$.subscribe((Res) => {
+      console.log(Res);
+    });
   }
 
   ngOnInit(): void {
