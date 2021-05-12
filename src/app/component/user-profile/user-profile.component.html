@@ -1,0 +1,3 @@
+<ul *ngIf="(user_Profile$ | async).user as data">
+  <li>{{ data.name }}</li>
+</ul>

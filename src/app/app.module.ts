@@ -8,9 +8,12 @@ import { OtpComponent } from './component/otp/otp.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { StoreModule } from '@ngrx/store';
+import { userReducer } from './state/user.reducer';
+import { UserProfileComponent } from './component/user-profile/user-profile.component';
 
 @NgModule({
-  declarations: [AppComponent, UserComponent, OtpComponent],
+  declarations: [AppComponent, UserComponent, OtpComponent, UserProfileComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -18,6 +21,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    StoreModule.forRoot({ user: userReducer }),
   ],
   providers: [],
   bootstrap: [AppComponent],
