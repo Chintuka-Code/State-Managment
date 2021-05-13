@@ -11,9 +11,19 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
 import { userReducer } from './state/user.reducer';
 import { UserProfileComponent } from './component/user-profile/user-profile.component';
+import { AppState } from './app-state/app.state';
+import { EffectsModule } from '@ngrx/effects';
+import { AuthEffects } from './auth-state/auth.effect';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from 'src/environments/environment.prod';
 
 @NgModule({
-  declarations: [AppComponent, UserComponent, OtpComponent, UserProfileComponent],
+  declarations: [
+    AppComponent,
+    UserComponent,
+    OtpComponent,
+    UserProfileComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -21,7 +31,12 @@ import { UserProfileComponent } from './component/user-profile/user-profile.comp
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    StoreModule.forRoot({ user: userReducer }),
+    EffectsModule.forRoot([AuthEffects]),
+    StoreModule.forRoot(AppState),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+      logOnly: environment.production, // Restrict extension to log-only mode
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { saveUser } from './user.action';
+import { saveUser, updateSpinner } from './user.action';
 import { initialState } from './user.state';
 
 const _userReducer = createReducer(
@@ -8,6 +8,12 @@ const _userReducer = createReducer(
     return {
       ...state,
       user: action.user_data,
+    };
+  }),
+  on(updateSpinner, (state, action): any => {
+    return {
+      ...state,
+      spinner: true,
     };
   })
 );
